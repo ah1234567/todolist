@@ -1,35 +1,14 @@
 import React, { Component } from 'react';
+import TaskLists from './TasksLists'
 
 class TodoList extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       todos: [], //array of strings
       currentToDo: "",
     }
   }
-
-
-
-  // <div className = "navbar">
-  // <a  href = "">Home</a>
-  // <a href = "">Contact</a>
-  // <a href = "">Paperwork</a>
-  // <a href = ""> About</a>
-  // </div>
-
-
-  // <div className = "list">
-  // <ul>
-  // <li>firstname</li>
-  // <li>lastname</li>
-  // <li>email</li>
-  // <li>phonenumber</li>
-  // </ul>
-  // </div>
-
-
-
 
   handleChange = event => {
     event.preventDefault();
@@ -39,9 +18,6 @@ class TodoList extends Component {
     })
 
   }
-
-
-
 
   addItem = event => {
     event.preventDefault()
@@ -55,15 +31,47 @@ class TodoList extends Component {
 
 
 
-  deleteItem = (index) => {
-    console.log(index)
-    this.setState({
-      todos: this.state.todos.filter((el, idx) => {
+//   deleteItem = (index) => {
+//     console.log(index)
 
-        return el != index;
-      })
-    })
-  }
+//     this.setState({
+//       todos: this.state.todos.filter((el) => {
+
+//         // return el == idx;
+//         // return el !==index;
+//         return el.splice[el.length];
+//       })
+//     })
+
+
+// this.setState({
+
+//   todos:this.state.todos.filter((index) => {
+
+//     return index!= key;
+//   })
+// })
+
+
+
+//   }
+
+
+
+deleteItem = idx => {
+  const sepItems = this.state.todos.filter( (el, index) => {
+
+    return index != idx;
+  })
+  this.setState({
+    todos: sepItems, 
+  })
+}
+
+
+
+
+
   //filter for elements whose index is NOT the index we are deleting
 
 
@@ -83,33 +91,76 @@ class TodoList extends Component {
 
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div>
         <div className='container'>
           <form onSubmit={this.addItem}>
             <label htmlFor="taskName"> Test Name: </label>
             <input onChange={this.handleChange} name="taskname" type="text" placeholder="Add todo here" />
-            <input onChange={this.addItem} name="additems" type="button" />
             <button type="submit"> Add Task</button>
 
-            {/* <input onChange = {this.deleteItem} name = "delete" type = "text" placeholder = "delete task"/> */}
-            {/* <button onClick = {this.addItem}>
-          {this.state.isTodoliston? "True" : "false"}</button> */}
-          </form>
-        </div>
-        <ul className="list1">
+           
+           </form>
+         </div>
+         <TaskLists  />
+
+
+        {/* <ul className="list1">
           {this.state.todos.map((el, index) =>
             <li key={index}>
               {el}
               <button onClick={() => this.deleteItem(index)}>delete</button>
             </li>)}
-        </ul>
+        </ul> */}
       </div>
 
+
+  // deletelist  = index => {<li key  = {index.key} onClick = {() =>
+  //   this.props.deleteItem(index.key) }>
+  //   {index.text}
+  //   </li> 
+  //   }
     )
+
   }
+
 }
+
+
+
+
+
+
+
+
+      // <div>
+      //   <div className='container'>
+      //     <form onSubmit={this.addItem}>
+      //       <label htmlFor="taskName"> Test Name: </label>
+      //       <input onChange={this.handleChange} name="taskname" type="text" placeholder="Add todo here" />
+      //       <input onChange={this.addItem} name="additems" type="button" />
+      //       <button type="submit"> Add Task</button>
+
+           
+      // //     </form>
+      // //   </div>
+      //   <ul className="list1">
+      //     {this.state.todos.map((el, index) =>
+      //       <li key={index}>
+      //         {el}
+      //         <button onClick={() => this.deleteItem(index)}>delete</button>
+      //       </li>)}
+      //   </ul>
+      // </div>
+
+
+      
+//     )
+//   }
+// }
+
+
 
 
 
